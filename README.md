@@ -301,6 +301,11 @@ class AuthApiController extends Controller
 - A `logout()` metódus törli az aktuális tokent az adatbázisból, így az többé nem használható.
 - 401-es válasz érvénytelen hitelesítés esetén.
 
+Regisztráció:
+<img width="1670" height="1005" alt="image" src="https://github.com/user-attachments/assets/efd3758d-adcf-4012-9c29-a816a14e03a0" />
+Bejelentkezés:
+<img width="1676" height="1006" alt="image" src="https://github.com/user-attachments/assets/2cade727-5354-4eba-8bc0-1f5fa8172338" />
+
 ---
 
 ## 3. Szavazások kezelése (Polls API)
@@ -374,6 +379,18 @@ class PollApiController extends Controller
 - `store()`: védett (Bearer token szükséges), minimum 2 opciót követel meg.
 - `show()`: egyedi szavazás részletei.
 - `results()`: összesítés, opciónként számolja a szavazatokat.
+
+Szavazások kilistázása
+<img width="1680" height="1009" alt="image" src="https://github.com/user-attachments/assets/83d877e8-0456-495d-9ee2-0c0b1fa9adfe" />
+
+Egy szavazás kilistázása
+<img width="1677" height="1003" alt="image" src="https://github.com/user-attachments/assets/7307b1cb-d79c-43f8-8536-6bcdb670ccba" />
+
+Szavazás eredmények
+<img width="1677" height="1006" alt="image" src="https://github.com/user-attachments/assets/428b1057-b429-4664-bbd5-d6611ba1a480" />
+
+
+
 
 ---
 
@@ -711,6 +728,14 @@ Importáld Postmanbe, és állítsd be a következő változókat:
 4. **Polls (protected) / Vote** – szavazat leadása
 5. **Polls (public) / Results** – eredmények ellenőrzése
 6. **Auth / Logout** – kijelentkezés (üresíti a token változót)
+
+Szavazás létrehozása
+<img width="1675" height="1005" alt="image" src="https://github.com/user-attachments/assets/27dcbaf8-814c-4c24-9170-4e97149cbaf2" />
+
+Szavazás
+<img width="1682" height="1009" alt="image" src="https://github.com/user-attachments/assets/4c8df236-12c3-4f16-8383-b9599d2b6780" />
+
+
 
 **Automatikus token capture példa (Login végpont teszt szkript):**
 
