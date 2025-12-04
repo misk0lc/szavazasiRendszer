@@ -7,6 +7,92 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Szavazási rendszer – Vizsgaremek (13.)
+
+Egyszerű szavazási rendszer a következő táblákkal:
+
+- `users(id, name, email, verified, created_at, updated_at)`
+- `polls(id, question, description, options, closes_at, created_at, updated_at)`
+- `votes(id, user_id, poll_id, selected_option, voted_at, created_at, updated_at)`
+
+Funkciók:
+- Szavazások listázása, létrehozása (kérdés, leírás, opciók, lezárás dátuma)
+- Szavazólap megtekintése és szavazás leadása (felhasználó választásával)
+- Eredmények megjelenítése (opciónkénti számlálás és százalék)
+- Egy felhasználó csak egyszer szavazhat egy szavazásban
+- Lezárt szavazásra nem lehet szavazni
+
+### Futtatás (Windows / PowerShell)
+
+1) Csomagok telepítése és környezet beállítása
+
+```powershell
+composer install
+Copy-Item .env.example .env
+php artisan key:generate
+```
+
+2) Adatbázis beállítása (.env)
+
+Állítsd be a saját DB kapcsolatod (pl. MySQL a XAMPP-ból), majd:
+
+```powershell
+php artisan migrate
+```
+
+3) Indítás
+
+```powershell
+php artisan serve
+```
+
+Ezután megnyitás: http://127.0.0.1:8000/polls
+
+4) Tesztek futtatása
+
+```powershell
+php vendor/phpunit/phpunit/phpunit
+```
+
+### API – Bearer tokenes használat (Sanctum)
+
+Szavazni API-n keresztül lehet, Bearer tokennel.
+
+1) Regisztráció és token kérése:
+
+```powershell
+curl -X POST http://127.0.0.1:8000/api/register -H "Content-Type: application/json" -d '{"name":"Teszt Elek","email":"teszt@example.com","password":"secret123"}'
+```
+
+Vagy bejelentkezés tokenért:
+
+```powershell
+curl -X POST http://127.0.0.1:8000/api/login -H "Content-Type: application/json" -d '{"email":"teszt@example.com","password":"secret123"}'
+```
+
+Válaszban: `{"token_type":"Bearer","access_token":"..."}`
+
+2) Szavazás leadása tokennel:
+
+```powershell
+curl -X POST http://127.0.0.1:8000/api/polls/1/vote -H "Authorization: Bearer YOUR_TOKEN" -H "Content-Type: application/json" -d '{"selected_option":"Igen"}'
+```
+
+3) Publikus végpontok:
+
+- Lista: `GET /api/polls`
+- Részletek: `GET /api/polls/{id}`
+- Eredmények: `GET /api/polls/{id}/results`
+
+4) Védett végpontok (Bearer szükséges):
+
+- Létrehozás: `POST /api/polls` (body: question, description?, options[array], closes_at?)
+- Szavazás: `POST /api/polls/{id}/vote`
+
+Megjegyzés: A webes bejelentkezés/regisztráció nem használatos; a szavazás kizárólag Bearer tokennel történik API-n.
+
+---
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
