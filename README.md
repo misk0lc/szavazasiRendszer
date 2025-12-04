@@ -1,4 +1,4 @@
-# IV. fejezet – Szavazási rendszer fejlesztői napló
+# Szavazási rendszer fejlesztői napló
 
 ## Bevezetés
 
