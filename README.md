@@ -564,16 +564,6 @@ class PollVotingTest extends TestCase
     }
 }
 ```
-
-**Teszt lefedettség:**
-1. Sikeres szavazás flow
-2. Duplikált szavazat megakadályozása
-3. Lezárt szavazásra tiltás
-
-**Futtatás:**
-```bash
-php vendor/phpunit/phpunit/phpunit
-```
 ---
 
 ## 7. Postman kollekció
